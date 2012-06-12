@@ -1,0 +1,5 @@
+%<%= name %> ALL=NOPASSWD: /bin/chmod,/bin/chown
+%<%= name %> ALL=NOPASSWD: /sbin/start <%= name %>*
+%<%= name %> ALL=NOPASSWD: /sbin/stop <%= name %>*
+%<%= name %> ALL=NOPASSWD: /sbin/restart <%= name %>*
+%<%= name %> ALL=NOPASSWD: /bin/su - <%= name %>*

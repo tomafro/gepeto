@@ -1,11 +1,11 @@
 class ssh {
-  package { "open-ssh":
+  package { "openssh-server":
     ensure => latest
   }
 
   service { ssh:
     ensure => running,
-    require => Package["open-ssh"]
+    require => Package["openssh-server"]
   }
 
   file {"/etc/ssh/ssh_known_hosts":

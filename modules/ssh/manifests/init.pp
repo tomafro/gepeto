@@ -5,7 +5,7 @@ class ssh {
 
   service { ssh:
     ensure => running
-    require => Package[open-ssh]
+    require => Package["open-ssh"]
   }
 
   file {"/etc/ssh/ssh_known_hosts":

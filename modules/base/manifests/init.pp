@@ -23,6 +23,13 @@ class base {
     require => User[tomw]
   }
 
+  file { '/srv/puppet':
+    group => admin,
+    mode => 770,
+    recurse => true,
+    require => Group[admin]
+  }
+
   file { '/home/tomw/.zshrc':
     ensure => present,
     require => File['/home/tomw']

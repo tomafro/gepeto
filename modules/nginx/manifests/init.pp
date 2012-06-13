@@ -24,13 +24,15 @@ class nginx {
 
     file { "/etc/nginx/sites-available/$name":
       content => template("nginx/static.erb"),
-      notify => Service[nginx]
+      notify => Service[nginx],
+      require => Package[nginx]
     }
 
     file { "/etc/nginx/sites-enabled/$name":
       ensure => link,
       target => "/etc/nginx/sites-available/$name",
-      notify => Service[nginx]
+      notify => Service[nginx],
+      require => Package[nginx]
     }
   }
 

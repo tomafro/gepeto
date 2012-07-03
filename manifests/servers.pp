@@ -1,19 +1,19 @@
-define server($ip) {
-  host { $name:
-    ip => $ip
-  }
-
-  case $::ipaddress {
-    $ip: {
+define server($host) {
+  case $::macaddress {
+    $name: {
       class {hostname:
-        hostname => $name,
-        ip => $ip
+        hostname => $host,
+        ip => $::ipaddress
       }
     }
   }
 }
 
 class hostname($hostname, $ip) {
+  host { $hostname:
+    ip => $::ipaddress
+  }
+
   exec {'/bin/hostname -F /etc/hostname':}
 
   file {'/etc/hostname':
@@ -22,6 +22,6 @@ class hostname($hostname, $ip) {
   }
 }
 
-server { truffaut:
-  ip => '172.16.220.145'
+server { ['00:0c:29:a5:07:94', 'f2:3c:91:ae:0f:1a']:
+  host => 'truffaut'
 }

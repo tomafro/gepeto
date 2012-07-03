@@ -48,4 +48,10 @@ class base {
     ensure => link,
     target => '/usr/share/zoneinfo/UTC',
   }
+
+  file { '/etc/sudoers.d/tomw-no-password':,
+    ensure => present,
+    content => "tomw ALL=(ALL) NOPASSWD: ALL",
+    mode => 440
+  }
 }

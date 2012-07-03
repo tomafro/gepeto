@@ -4,18 +4,18 @@ class ufw {
   }
 
   exec { "enable-firewall":
-    command => "/usr/bin/yes | /usr/sbin/ufw enable",
+    command => "/usr/sbin/ufw --force enable",
     unless => "/usr/sbin/ufw status | grep \"Status: active\"",
     require => [Package["ufw"]]
   }
 
-  define allow {
+  define allow-port {
     include ufw
 
-    exec { "allow-$name":
+    exec { "allow-port-$name":
       command => "/usr/sbin/ufw allow ${name}",
-      unless => "/usr/sbin/ufw status | grep \"${name}.*ALLOW.*Anywhere\\|Status: inactive\"",
-      require => [Package["ufw"]]
+      unless => "/usr/sbin/ufw status | grep \"${port}.*ALLOW.*Anywhere\"",
+      require => [Class["ufw"]]
     }
   }
 }

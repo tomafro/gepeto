@@ -1,5 +1,5 @@
 class base {
-  include ssh, ufw
+  include ssh
 
   package { [unattended-upgrades, zsh, build-essential, git-core, curl, libc6-dev, libssl-dev, libreadline6-dev, zlib1g-dev, ]:
     ensure => present

@@ -1,4 +1,6 @@
 class ssh {
+  include ufw
+
   package { "openssh-server":
     ensure => latest
   }
@@ -17,5 +19,5 @@ class ssh {
     notify => Service[ssh]
   }
 
-  ufw::allow {ssh:}
+  ufw::allow-port {22:}
 }

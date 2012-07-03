@@ -16,8 +16,8 @@ class nginx {
     ensure => absent
   }
 
-  ufw::allow {http:}
-  ufw::allow {https:}
+  ufw::allow-port {80:}
+  ufw::allow-port {443:}
 
   define site($root) {
     include nginx

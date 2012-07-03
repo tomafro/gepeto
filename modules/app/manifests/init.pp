@@ -4,6 +4,8 @@ class app {
   }
 
   define base($owners = []) {
+    include app
+
     app::owner {$owners:
       app => $name
     }

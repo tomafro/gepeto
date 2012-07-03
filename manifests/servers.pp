@@ -23,5 +23,5 @@ class hostname($hostname, $ip) {
 }
 
 server { truffaut:
-  ip => '172.16.220.141'
+  ip => '172.16.220.145'
 }

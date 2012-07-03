@@ -1,5 +1,5 @@
 node default {
-  include base, ssh
+  include base
 
   #include ruby, app
 
@@ -13,7 +13,5 @@ node default {
 }
 
 node truffaut inherits default {
-  nginx::site { 'tomafro.net':
-    root => '/home/tomafro.net/apps/tomafro.net/public'
-  }
+  app::site {'tomafro.net':}
 }

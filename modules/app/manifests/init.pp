@@ -30,7 +30,7 @@ class app {
     }
 
     nginx::site { $name:
-      root => "/home/$name/site"
+      root => "/home/$name/app/public"
     }
   }
 

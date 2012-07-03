@@ -22,6 +22,10 @@ class nginx {
   define site($root) {
     include nginx
 
+    host { "$name.localhost":
+      ip => "127.0.0.1"
+    }
+
     file { "/etc/nginx/sites-available/$name":
       content => template("nginx/static.erb"),
       notify => Service[nginx],

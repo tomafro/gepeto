@@ -1,5 +1,5 @@
 define server($host) {
-  case $::macaddress {
+  case $::ipaddress {
     $name: {
       class {hostname:
         hostname => $host,
@@ -22,6 +22,6 @@ class hostname($hostname, $ip) {
   }
 }
 
-server { ['00:0c:29:a5:07:94', 'f2:3c:91:ae:0f:1a']:
+server { ['172.16.220.145', '176.58.114.53']:
   host => 'truffaut'
 }

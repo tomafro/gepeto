@@ -14,7 +14,7 @@ class ufw {
 
     exec { "allow-port-$name":
       command => "/usr/sbin/ufw allow ${name}",
-      unless => "/usr/sbin/ufw status | grep \"${port}.*ALLOW.*Anywhere\"",
+      unless => "/usr/sbin/ufw status | grep \"${name}.*ALLOW.*Anywhere\"",
       require => [Class["ufw"]]
     }
   }

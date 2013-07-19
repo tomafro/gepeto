@@ -1,7 +1,7 @@
 class base {
   include ssh
 
-  package { [unattended-upgrades, zsh, build-essential, git-core, curl, libc6-dev, libssl-dev, libreadline6-dev, zlib1g-dev, ]:
+  package { [unattended-upgrades, zsh, build-essential, git-core, curl, libc6-dev, libssl-dev, libreadline6-dev, zlib1g-dev, python-software-properties]:
     ensure => present
   }
 

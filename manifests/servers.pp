@@ -25,3 +25,15 @@ class hostname($hostname, $ip) {
 server { ['172.16.220.145', '176.58.114.53']:
   host => 'truffaut'
 }
+
+server { ['172.16.220.141']:
+  host => 'godard'
+}
+
+server { ['172.16.220.148']:
+  host => 'chabrol'
+}
+
+server { ['178.79.154.142']:
+  host => 'subscribely'
+}

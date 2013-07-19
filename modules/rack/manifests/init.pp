@@ -10,11 +10,7 @@ class rack {
     }
 
     nginx::rack { $name:
-      root => "/home/$name/apps/$name"
-    }
-
-    unicorn::rails { $name:
-      root => "/home/$name/apps/$name" 
+      root => "/home/$name/app"
     }
   }
 }

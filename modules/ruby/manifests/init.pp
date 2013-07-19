@@ -6,10 +6,15 @@ class ruby {
     line => 'RBENV_ROOT=/usr/local/rbenv'
   }
 
-  line { rbenv-path:
+  line { zsh-rbenv-path:
     require => Package[zsh],
     file => '/etc/zsh/zshenv',
     line => 'export PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH"'
+  }
+
+  file { "/etc/profile.d/rbenv-path.sh":
+    ensure => present,
+    content => 'export PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH"'
   }
 
   exec { install-ruby-build:
@@ -22,12 +27,15 @@ class ruby {
     creates => '/usr/local/rbenv',
   }
 
-  define version($global = false, $bundler = '1.1.rc.7') {
+  define version($global = false, $bundler = '1.2.3') {
+    include ruby
+
     exec { "install-ruby-$name":
       environment => "RBENV_ROOT=/usr/local/rbenv",
       command => "/usr/local/rbenv/bin/rbenv install $name",
       creates => "/usr/local/rbenv/versions/$name",
-      timeout => 0
+      timeout => 0,
+      require => Class[ruby]
     }
 
     exec { "install-bundler-for-$name":

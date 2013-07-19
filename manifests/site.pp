@@ -2,6 +2,14 @@ Exec {
   path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 }
 
+stage { 'first': before => Stage['main'] }
+
+class {
+  'apt': stage => first
+}
+
+include apt
+
 define line($file, $line, $ensure = 'present') {
   case $ensure {
     default : { err ( "unknown ensure value ${ensure}" ) }

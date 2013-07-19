@@ -5,7 +5,34 @@ server {
   error_page 404 /404.html;
 
   location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
-    expires 30d;
+    expires 90d;
+    add_header Pragma public;
+    add_header Cache-Control "public";
+  }
+
+  location / {
+    expires 10m;
+    add_header Pragma public;
+    add_header Cache-Control "public";
+
+    try_files $uri $uri/index.html $uri.html =404;
+  }
+}
+
+server {
+  server_name <%= name %> <%= name %>.localhost;
+  root <%= root %>;
+
+  listen 443;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/<%= name %>.crt;
+  ssl_certificate_key /etc/nginx/ssl/<%= name %>.key;
+
+  error_page 404 /404.html;
+
+  location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+    expires 90d;
     add_header Pragma public;
     add_header Cache-Control "public";
   }
